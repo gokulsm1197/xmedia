@@ -1,0 +1,67 @@
+* Install Virtualization Tools
+
+sudo apt update
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager -y
+
+
+* Download an ISO File
+
+wget https://releases.ubuntu.com/22.04/ubuntu-22.04.4-desktop-amd64.iso
+
+
+* Create a VM using virt-install (command-line)
+
+
+sudo virt-install \
+--name ubuntu-vm \
+--memory 2048 \
+--vcpus 2 \
+--disk size=20 \
+--cdrom /path/to/ubuntu.iso \
+--os-variant ubuntu22.04 \
+--network network=default \
+--graphics vnc
+
+* Check VM status:
+
+virsh list --all
+
+
+* Start/Stop VM:
+
+virsh start ubuntu-vm
+virsh shutdown ubuntu-vm
+
+
+* Check the VM state:
+
+sudo virsh list --all
+
+
+ * If ubuntu-vm is running or paused, stop it:
+
+sudo virsh destroy ubuntu-vm
+
+
+* Now undefine and delete all storage
+
+sudo virsh undefine ubuntu-vm --remove-all-storage
+
+* get the vm ip cmd
+
+sudo virsh domifaddr ubuntu-vm
+
+* virsh console (Terminal only VM)
+
+sudo virsh console xmedia2
+
+
+
+
+
+
+
+
+
+
+
