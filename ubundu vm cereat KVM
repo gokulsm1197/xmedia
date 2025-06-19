@@ -55,6 +55,38 @@ sudo virsh domifaddr ubuntu-vm
 
 sudo virsh console xmedia2
 
+* Access the VM via virt-manager
+
+
+
+
+****virt-manager
+
+ Select the xmedia2 VM.
+
+Click Open → You should see the graphical screen.
+
+If Ubuntu is not yet installed, go ahead and install it.
+
+* After Logging In to the VM (inside GUI), Add Serial Console Support
+
+sudo nano /etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+Change it to:
+GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0"
+
+
+* THAN 
+sudo update-grub
+sudo virsh shutdown xmedia2
+sudo virsh start xmedia2
+
+
+
+
+
+
 
 
 
